@@ -1,0 +1,5 @@
+﻿server/node_modules
+server/.env
+server/data/admins.json
+server/data/sessions
+audio-source

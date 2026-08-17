@@ -1,0 +1,21 @@
+{
+  "name": "psalms-admin-server",
+  "version": "1.0.0",
+  "description": "Admin backend for سفر المزامير — serves the existing static site plus an authenticated admin API.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "create-admin": "node scripts/create-admin.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "session-file-store": "^1.5.0",
+    "bcryptjs": "^2.4.3",
+    "multer": "^2.0.0",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.4.5"
+  }
+}

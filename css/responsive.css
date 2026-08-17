@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Responsive — mobile-first adjustments
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .container { padding: 0 1.1rem; }
+  .hero { padding: 3rem 0 2.5rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+
+  .continue-card { flex-direction: column; text-align: center; }
+  .continue-progress { width: 110px; height: 110px; }
+
+  .psalm-grid { grid-template-columns: 1fr; }
+
+  .verse { padding: 0.6rem 0.25rem; gap: 0.6rem; }
+  .verse .vnum { width: 1.6rem; font-size: 0.9rem; }
+  .verses { font-size: calc(var(--verse-size) * 0.92); }
+
+  .verse-actions { opacity: 1; flex-direction: row; }
+
+  .reader-toolbar { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .reader-toolbar::-webkit-scrollbar { display: none; }
+
+  .psalm-pager { flex-direction: column; }
+  .psalm-pager .next, .psalm-pager .prev { text-align: right; align-items: flex-end; }
+
+  .journey-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .audio-player { padding: 0.6rem 0.75rem; }
+}
+
+/* Ensure touch targets stay comfortable */
+@media (pointer: coarse) {
+  .btn-icon, .verse-actions button, .nav-search-btn { min-width: 2.5rem; min-height: 2.5rem; }
+}
+
+/* Avoid any horizontal overflow */
+html, body { overflow-x: hidden; }
+img, svg { max-width: 100%; }

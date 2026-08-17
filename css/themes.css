@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Theme picker UI (the actual theme tokens live in style.css :root / [data-theme])
+   ========================================================================== */
+
+.theme-picker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+.theme-swatch {
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--line);
+  padding: 0.9rem 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-swatch .dot { width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 1px solid var(--line); }
+.theme-swatch.active { border-color: var(--accent); }
+.theme-swatch[data-swatch="light"] .dot { background: #EFE6D2; }
+.theme-swatch[data-swatch="dark"] .dot { background: #16201C; }
+.theme-swatch[data-swatch="paper"] .dot { background: #F7F1E3; }
+.theme-swatch[data-swatch="quiet"] .dot { background: #FAFAF8; }
+
+@media (max-width: 480px) {
+  .theme-picker { grid-template-columns: repeat(2, 1fr); }
+}

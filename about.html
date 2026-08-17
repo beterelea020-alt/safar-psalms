@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>عن الموقع — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="about.html" aria-current="page">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container reading-width" style="padding-top:2.5rem; padding-bottom:3rem;">
+    <h1>حكاية سفر المزامير</h1>
+
+    <h2>كل حاجة بدأت بسؤال بسيط</h2>
+    <p>
+      في يوم كنت بفكر: ليه مايبقاش فيه مكان بسيط أقدر أفتحه في أي وقت، ألاقي فيه المزامير قدامي
+      من غير حساب، من غير تسجيل دخول، ومن غير ما أحس إني داخل موقع معقد؟
+    </p>
+    <p>
+      مكان أقدر أفتح منه مزمور، أقرأه بهدوء، أسمعه، وأرجع له تاني في اليوم اللي بعده.
+    </p>
+    <p>ومن هنا بدأت فكرة <strong>سفر المزامير</strong>.</p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>في البداية الموضوع كان أسهل في دماغي</h2>
+    <p>قلت: هجيب النص، أعمل له واجهة كويسة، وأخلص.</p>
+    <p>
+      لكن أول ما بدأت أشتغل، اكتشفت إن أصعب حاجة في المشروع مش الـ UI ولا الـ JavaScript.
+      <strong>أصعب حاجة كانت النص نفسه.</strong>
+    </p>
+    <p>
+      المصدر اللي اعتمدت عليه كان PDF لترجمة دير الأنبا مقار، لكن لما بدأت أستخرج النص منه
+      برمجيًا ظهرت مشاكل بسبب الخط العربي المستخدم في الملف. حروف وعلامات تشكيل بدأت تظهر
+      بشكل مختلف عن الموجود في المصدر.
+    </p>
+    <p>وهنا كان عندي اختيارين: إما أعدّل النص بإيدي وأكمل، أو أوقف وأحاول أحافظ على المصدر زي ما هو.</p>
+    <p>
+      واخترت الحل الثاني، لأن الفكرة من البداية كانت إن الموقع يعرض النص، مش إني أكتب نسخة من عندي.
+    </p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>وهنا المشروع أخد اتجاه تاني</h2>
+    <p>في الأول كنت بعمل <strong>موقع للمزامير</strong>.</p>
+    <p>بعد مشكلة النص، بدأت أفكر فيه كـ <strong>مكتبة رقمية لازم أثق فيها</strong>.</p>
+    <p>وده خلاني أبقى حريص جدًا في كل حاجة:</p>
+    <ul>
+      <li>مافيش خلط بين ترجمات.</li>
+      <li>مافيش تغيير كلمات.</li>
+      <li>مافيش تفسيرات من عندنا.</li>
+      <li>ومافيش أي حاجة تحاول تزود على المصدر نفسه.</li>
+    </ul>
+    <p>
+      حتى الخطأ الوحيد اللي اتصلح بشكل آلي في ترقيم الآيات اتوثق لوحده فى
+      <code>data/numbering-corrections.json</code>.
+    </p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>طب ليه الموقع Offline؟</h2>
+    <p>
+      لأن مش منطقي بالنسبة لي إن المكان اللي أنا عايز أرجع له كل يوم يكون مربوط بالإنترنت طول
+      الوقت. فقلت: <strong>طب ما نخليه يشتغل لوحده؟</strong>
+    </p>
+    <p>ومن هنا بدأنا نعتمد على تقنيات الويب نفسها: PWA، Service Worker، LocalStorage، IndexedDB.</p>
+    <p>
+      بحيث إن الموقع يقدر يحتفظ بتقدمك على جهازك، ويكمل معاك حتى لما الإنترنت مش موجود.
+      من غير حساب، ومن غير Server شايل بياناتك.
+    </p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>وبعدها بدأت أسأل سؤال أهم</h2>
+    <p>أنا مش عايز الموقع يبقى مجرد مكان أقرأ منه، فبدأت أبني التجربة حوالين أربع حاجات بسيطة:</p>
+    <p style="font-family: var(--font-arabic); font-size: 1.3rem; color: var(--accent); text-align: center;">
+      اقرأ. استمع. احفظ. راجع.
+    </p>
+    <p>مش محتاج تعمل عشر خطوات عشان توصل للمزمور اللي عايزه. الفكرة كلها إنك تدخل... وتبدأ.</p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>طب هل كل حاجة مشت بسهولة؟</h2>
+    <p>أكيد لا.</p>
+    <p>كان في مشاكل في استخراج النص. وفي تفاصيل صغيرة في الـ Offline system. وفي تخزين التقدم محليًا.</p>
+    <p>وفي حاجات كتير كانت ممكن تتعمل بطريقة أكبر وأعقد، لكن كل مرة كنت بسأل نفسي: <strong>هل أنا فعلًا محتاج أضيف ده؟</strong></p>
+    <p>وفي مرات كتير كانت الإجابة: لا.</p>
+    <p>وده يمكن يكون أهم درس خرجت بيه من المشروع:</p>
+    <p style="font-family: var(--font-arabic); font-size: 1.15rem; text-align: center; color: var(--text-soft);">
+      "مش كل حاجة تقدر تعملها، لازم تحطها. أحيانًا الموقع الأحسن هو الموقع اللي عرفت تقول فيه 'كفاية'."
+    </p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>وفي الآخر...</h2>
+    <p>سفر المزامير بدأ بفكرة بسيطة جدًا. مكان هادي. تفتحُه وقت ما تحتاجه. تقرأ. تسمع. تحفظ. وترجع تاني.</p>
+    <p>
+      ومع الوقت، الفكرة الصغيرة دي اتحولت لمشروع كامل من غير Backend، ومن غير Accounts، ومن غير
+      Tracking، وكل تقدّمك يفضل على جهازك.
+    </p>
+    <p>وده بالضبط اللي كنت عايز أوصله:</p>
+    <p style="font-family: var(--font-arabic); font-size: 1.2rem; text-align: center; color: var(--accent);">
+      موقع بسيط في شكله، لكن معمول بعناية في كل تفصيلة.
+    </p>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <h2>مين عمل الموقع؟</h2>
+    <div class="card" style="text-align: center; padding: 2rem;">
+      <h3 style="margin-bottom: 0.25rem;">Peter Elea</h3>
+      <p style="color: var(--text-soft); margin-bottom: 1.25rem;">Full Stack Web Developer</p>
+      <p style="max-width: 30rem; margin: 0 auto 1.5rem;">
+        بحب أبني حاجات بسيطة في شكلها، لكن يكون وراها تفكير حقيقي في التجربة والتفاصيل.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a class="btn btn-secondary btn-sm" href="https://www.linkedin.com/in/peter-elea-71689935a/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B8jQa7mpiRgGD%2BhSGmqup7g%3D%3D" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="btn btn-secondary btn-sm" href="https://www.instagram.com/beter_elea?igsh=MWl2d3FveDNvNXNlaw==" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+
+    <div class="ornament"><span>✦</span></div>
+    <p style="color:var(--text-soft); font-size:0.9rem; text-align: center;">سفر المزامير مشروع تقني مستقل، ولا يمثل أي جهة كنسية أو مؤسسية رسمية.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>سفر المزامير</p></div>
+</footer>
+
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>

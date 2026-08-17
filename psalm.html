@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مزمور — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<button class="btn btn-secondary prayer-exit" id="prayer-exit-btn">✕ خروج من وضع الصلاة</button>
+
+<main id="main">
+  <div id="reader-root">
+    <header class="reader-header container" id="reader-header"></header>
+
+    <div class="reader-toolbar">
+      <button class="btn-icon" id="reading-mode-btn" title="وضع القراءة">▤</button>
+      <button class="btn-icon" id="prayer-mode-btn" title="وضع الصلاة">🕊</button>
+      <div class="divider non-essential"></div>
+      <div style="position:relative;" class="non-essential">
+        <button class="btn-icon" id="font-controls-btn" title="حجم الخط">أA</button>
+        <div class="popover" id="font-popover">
+          <div class="popover-row">
+            <span>حجم الخط</span>
+            <div class="stepper">
+              <button id="font-dec" aria-label="تصغير">−</button>
+              <button id="font-reset" aria-label="إعادة ضبط">↺</button>
+              <button id="font-inc" aria-label="تكبير">+</button>
+            </div>
+          </div>
+          <div class="popover-row">
+            <span>تباعد الأسطر</span>
+            <div class="stepper">
+              <button id="lh-dec" aria-label="تقليل">−</button>
+              <button id="lh-reset" aria-label="إعادة ضبط">↺</button>
+              <button id="lh-inc" aria-label="زيادة">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider non-essential"></div>
+      <a class="btn-icon non-essential" href="review.html" title="المراجعة">⟲</a>
+      <a class="btn-icon non-essential" id="memorize-link" href="#" title="الحفظ">✎</a>
+    </div>
+
+    <div class="container reading-width">
+      <div id="audio-container" class="audio-player"></div>
+      <div class="verses" id="verses-root" aria-live="polite"></div>
+      <nav class="psalm-pager" id="psalm-pager" aria-label="التنقل بين المزامير"></nav>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>سفر المزامير</p></div>
+</footer>
+
+<div id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/psalms.js"></script>
+<script src="js/sharing.js"></script>
+<script src="js/app.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/reader.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id') || '1';
+  document.getElementById('memorize-link').href = `memorize.html?id=${id}`;
+</script>
+</body>
+</html>

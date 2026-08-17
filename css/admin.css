@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Admin dashboard — reuses the site's existing design tokens (style.css)
+   ========================================================================== */
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 800px) {
+  .admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar { position: static; height: auto; }
+}
+
+.admin-sidebar {
+  background: var(--bg-elevated);
+  border-inline-end: 1px solid var(--line);
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.admin-sidebar .brand {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  display: block;
+}
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+.admin-nav button {
+  text-align: right;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius);
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+.admin-nav button:hover { background: var(--bg); color: var(--text); }
+.admin-nav button.active { background: var(--accent-deep, var(--color-teal-deep)); color: #F4ECD8; }
+
+.admin-main { padding: 2rem; max-width: 60rem; }
+
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.admin-login-card {
+  width: 100%;
+  max-width: 24rem;
+  padding: 2.5rem;
+  text-align: center;
+}
+.admin-login-card h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.admin-login-card p { color: var(--text-soft); margin-bottom: 1.5rem; }
+.admin-field { text-align: right; margin-bottom: 1rem; }
+.admin-field label { display: block; font-size: 0.85rem; color: var(--text-soft); margin-bottom: 0.35rem; }
+.admin-field input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+}
+.admin-error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  min-height: 1.3em;
+}
+
+.admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.admin-table th, .admin-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+.admin-table th { color: var(--text-soft); font-weight: 600; }
+.admin-table tr:hover td { background: var(--bg-elevated); }
+
+.admin-verse-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.admin-verse-row .vnum { color: var(--accent); font-weight: 700; width: 2rem; flex-shrink: 0; padding-top: 0.5rem; }
+.admin-verse-row textarea {
+  flex: 1;
+  font-family: var(--font-arabic);
+  font-size: 1.05rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  resize: vertical;
+  min-height: 2.6rem;
+}
+.admin-verse-row textarea.dirty { border-color: var(--accent); }
+.admin-verse-row .save-verse-btn { flex-shrink: 0; margin-top: 0.3rem; }
+
+.admin-diff {
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  margin-top: 0.4rem;
+}
+.admin-diff .old-val { color: var(--danger); text-decoration: line-through; }
+.admin-diff .new-val { color: #4C8B5E; }
+
+.file-drop {
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-soft);
+  cursor: pointer;
+}
+.file-drop.dragover { border-color: var(--accent); color: var(--accent); }

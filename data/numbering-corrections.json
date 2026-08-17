@@ -1,0 +1,1111 @@
+[
+  {
+    "psalm": 2,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 5,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 6,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 7,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 8,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 9,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 9,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 9,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 15,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 16,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 17,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 17,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 17,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 17,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 17,
+    "from": 51,
+    "to": 50,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 18,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 19,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 20,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 21,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 21,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 21,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 23,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 24,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 24,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 25,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 26,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 28,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 29,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 30,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 30,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 31,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 32,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 32,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 33,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 33,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 34,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 34,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 35,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 36,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 36,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 36,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 36,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 37,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 37,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 38,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 39,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 40,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 41,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 43,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 43,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 44,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 45,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 46,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 47,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 48,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 48,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 49,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 49,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 50,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 50,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 51,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 54,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 54,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 55,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 56,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 57,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 58,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 59,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 61,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 62,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 63,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 64,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 65,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 65,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 67,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 67,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 67,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 68,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 68,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 68,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 70,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 70,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 71,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 71,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 72,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 72,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 73,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 73,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 74,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 75,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 76,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 76,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 51,
+    "to": 50,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 61,
+    "to": 60,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 77,
+    "from": 71,
+    "to": 70,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 78,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 79,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 79,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 80,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 82,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 83,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 84,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 85,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 87,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 88,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 88,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 88,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 88,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 88,
+    "from": 51,
+    "to": 50,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 89,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 90,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 91,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 93,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 93,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 94,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 95,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 96,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 101,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 101,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 102,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 102,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 103,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 103,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 103,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 104,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 104,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 104,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 104,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 105,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 105,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 105,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 105,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 106,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 106,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 106,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 106,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 107,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 108,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 108,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 108,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 110,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 111,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 113,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 113,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 115,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 117,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 117,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 31,
+    "to": 30,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 41,
+    "to": 40,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 51,
+    "to": 50,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 61,
+    "to": 60,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 71,
+    "to": 70,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 81,
+    "to": 80,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 91,
+    "to": 90,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 121,
+    "to": 120,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 131,
+    "to": 130,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 141,
+    "to": 140,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 151,
+    "to": 150,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 161,
+    "to": 160,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "from": 171,
+    "to": 170,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 125,
+    "from": 5,
+    "to": 4,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 125,
+    "from": 6,
+    "to": 5,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 131,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 134,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 134,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 135,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 135,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 138,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 138,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 139,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 140,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 142,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 143,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 144,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 144,
+    "from": 21,
+    "to": 20,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 145,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 146,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 148,
+    "from": 11,
+    "to": 10,
+    "note": "likely digit 0 misread as 1 in source PDF font"
+  },
+  {
+    "psalm": 118,
+    "range": "100-119",
+    "note": "two-digit 0->1 misread (e.g. 100/101 both read as 111); resolved via sequential-position renumbering"
+  }
+]

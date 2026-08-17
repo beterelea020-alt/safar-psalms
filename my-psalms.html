@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مزاميرى — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html" aria-current="page">مزاميرى</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container" style="padding-top:2.5rem;">
+    <div class="section-title"><h2>مزاميرى</h2></div>
+
+    <div class="journey-grid" id="journey-grid" style="margin-bottom:2rem;"></div>
+
+    <div class="mode-tabs" id="mypsalms-tabs">
+      <button class="active" data-tab="favorites">المفضلة</button>
+      <button data-tab="memorizing">قيد الحفظ</button>
+      <button data-tab="needs-review">تحتاج مراجعة</button>
+      <button data-tab="read">تمت قراءتها</button>
+      <button data-tab="recent">مؤخرًا</button>
+      <button data-tab="notes">ملاحظاتى</button>
+    </div>
+
+    <div id="mypsalms-content" style="margin-bottom:3rem;"></div>
+
+    <div class="ornament"><span>✦</span></div>
+
+    <section style="margin-bottom:3rem;">
+      <div class="section-title"><h2>خطة القراءة</h2></div>
+      <div id="plan-root" class="card"></div>
+    </section>
+
+    <section style="margin-bottom:3rem;">
+      <div class="section-title"><h2>بياناتى</h2></div>
+      <div class="card">
+        <p style="color:var(--text-soft);">لا تحتاج إلى إنشاء حساب. يمكنك تصدير بياناتك ونقلها إلى جهاز آخر فى أى وقت.</p>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
+          <button class="btn btn-secondary" id="export-btn">تصدير بياناتى</button>
+          <label class="btn btn-secondary" style="cursor:pointer;">
+            استيراد بياناتى
+            <input type="file" accept="application/json" id="import-input" style="display:none;">
+          </label>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>سفر المزامير</p></div>
+</footer>
+
+<div id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/psalms.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/plans.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+let currentTab = 'favorites';
+
+async function renderStats() {
+  const stats = await Progress.summary();
+  document.getElementById('journey-grid').innerHTML = `
+    <div class="card journey-stat"><div class="num">${stats.readCount}</div><div class="label">مزمورًا قرأتها</div></div>
+    <div class="card journey-stat"><div class="num">${stats.memorizingCount}</div><div class="label">مزمورًا أحفظها</div></div>
+    <div class="card journey-stat"><div class="num">${stats.reviewedVerseCount}</div><div class="label">آية راجعتها</div></div>
+    <div class="card journey-stat"><div class="num">${stats.streakDays}</div><div class="label">🔥 يومًا متتاليًا</div></div>
+  `;
+}
+
+function psalmCardHtml(p, extra) {
+  return `
+    <div class="card psalm-card">
+      <div class="psalm-card-head-left"><span class="num-badge">${p.number}</span><span class="title">${p.title}</span></div>
+      <div class="preview">${extra || (p.verses[0]?.text || '')}</div>
+      <div class="actions"><a href="psalm.html?id=${p.number}">اقرأ</a><a href="memorize.html?id=${p.number}">احفظ</a></div>
+    </div>`;
+}
+
+async function renderTab() {
+  const root = document.getElementById('mypsalms-content');
+  const all = await PsalmsData.all();
+
+  if (currentTab === 'favorites') {
+    const favNums = Store.getFavoritePsalms();
+    const list = all.filter(p => favNums.includes(p.number));
+    root.innerHTML = list.length
+      ? `<div class="psalm-grid">${list.map(p => psalmCardHtml(p)).join('')}</div>`
+      : emptyMsg('لم تُضِف أى مزمور إلى المفضلة بعد.');
+    return;
+  }
+
+  if (currentTab === 'memorizing') {
+    const nums = Store.getMemorizingPsalms();
+    const list = all.filter(p => nums.includes(p.number));
+    root.innerHTML = list.length
+      ? `<div class="psalm-grid">${list.map(p => psalmCardHtml(p)).join('')}</div>`
+      : emptyMsg('ابدأ حفظ مزمور من صفحة القراءة لتظهر هنا.');
+    return;
+  }
+
+  if (currentTab === 'needs-review') {
+    const mastery = await IDB.getAllMastery();
+    const flagged = mastery.filter(m => m.needsReview || m.mastery < 40);
+    if (!flagged.length) { root.innerHTML = emptyMsg('لا توجد آيات تحتاج مراجعة حاليًا.'); return; }
+    root.innerHTML = `<div class="psalm-grid">${flagged.map(m =>
+      `<div class="card psalm-card">
+        <div class="psalm-card-head-left"><span class="num-badge">${m.psalm}:${m.verse}</span></div>
+        <div class="actions"><a href="psalm.html?id=${m.psalm}&verse=${m.verse}">اذهب للآية</a></div>
+      </div>`).join('')}</div>`;
+    return;
+  }
+
+  if (currentTab === 'read') {
+    const readMap = Store.getReadPsalms();
+    const list = all.filter(p => readMap[p.number]);
+    root.innerHTML = list.length
+      ? `<div class="psalm-grid">${list.map(p => psalmCardHtml(p, `آخر آية: ${readMap[p.number].lastVerse}`)).join('')}</div>`
+      : emptyMsg('لم تقرأ أى مزمور بعد.');
+    return;
+  }
+
+  if (currentTab === 'recent') {
+    const hist = Store.getHistory();
+    root.innerHTML = hist.length
+      ? hist.map(h => `
+        <div class="card" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+          <span>${h.title || 'مزمور ' + h.psalm}</span>
+          <span style="color:var(--text-soft); font-size:0.85rem;">${new Date(h.at).toLocaleDateString('ar-EG')}</span>
+        </div>`).join('')
+      : emptyMsg('لا يوجد نشاط حديث بعد.');
+    return;
+  }
+
+  if (currentTab === 'notes') {
+    const notes = await IDB.getAllNotes();
+    root.innerHTML = notes.length
+      ? notes.map(n => `
+        <div class="card" style="margin-bottom:0.75rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <a href="psalm.html?id=${n.psalm}&verse=${n.verse}" style="font-weight:700;">مزمور ${n.psalm}:${n.verse}</a>
+          </div>
+          <p style="margin:0; color:var(--text-soft);">${n.text}</p>
+        </div>`).join('')
+      : emptyMsg('لم تُضِف أى ملاحظات بعد.');
+    return;
+  }
+}
+
+function emptyMsg(msg) {
+  return `<div class="empty-state"><p>${msg}</p></div>`;
+}
+
+document.getElementById('mypsalms-tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-tab]');
+  if (!btn) return;
+  document.querySelectorAll('#mypsalms-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTab = btn.dataset.tab;
+  renderTab();
+});
+
+async function renderPlan() {
+  const root = document.getElementById('plan-root');
+  const plan = Plans.get();
+  if (!plan) {
+    root.innerHTML = `
+      <p style="color:var(--text-soft); margin-bottom:1rem;">اختر خطة قراءة لتوزيع المزامير على أيام محددة.</p>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn btn-secondary btn-sm" data-plan="30">٣٠ يومًا</button>
+        <button class="btn btn-secondary btn-sm" data-plan="60">٦٠ يومًا</button>
+        <button class="btn btn-secondary btn-sm" data-plan="90">٩٠ يومًا</button>
+      </div>`;
+    root.querySelectorAll('[data-plan]').forEach(b => b.addEventListener('click', async () => {
+      await Plans.generate(Number(b.dataset.plan));
+      toast('تم إنشاء خطة القراءة');
+      renderPlan();
+    }));
+    return;
+  }
+  const current = Plans.currentDay(plan);
+  root.innerHTML = current ? `
+    <div class="continue-label">اليوم ${current.day} من ${plan.days}</div>
+    <div class="continue-psalm">المزامير ${current.from} — ${current.to}</div>
+    <div style="margin-top:1rem; display:flex; gap:0.75rem;">
+      <a class="btn btn-primary btn-sm" href="psalm.html?id=${current.from}">اقرأ الآن</a>
+      <button class="btn btn-secondary btn-sm" id="mark-day-done">تم الإنجاز</button>
+      <button class="btn btn-secondary btn-sm" id="reset-plan">خطة جديدة</button>
+    </div>
+  ` : `<p>أتممت خطة القراءة بالكامل! 🎉</p><button class="btn btn-secondary btn-sm" id="reset-plan">ابدأ خطة جديدة</button>`;
+
+  root.querySelector('#mark-day-done')?.addEventListener('click', () => {
+    Plans.markDayComplete(current.day);
+    toast('أُنجز اليوم');
+    renderPlan();
+  });
+  root.querySelector('#reset-plan')?.addEventListener('click', () => {
+    Store.setPlan(null);
+    renderPlan();
+  });
+}
+
+document.getElementById('export-btn').addEventListener('click', async () => {
+  const data = await Store.exportAll();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'my-psalms-data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('تم تصدير بياناتك');
+});
+
+document.getElementById('import-input').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    await Store.importAll(data);
+    toast('تم استيراد بياناتك بنجاح');
+    renderStats(); renderTab(); renderPlan();
+  } catch (err) {
+    toast('تعذّر استيراد الملف — تأكد من أنه ملف بيانات صالح');
+  }
+  e.target.value = '';
+});
+
+(async function init() {
+  await PsalmsData.load();
+  renderStats();
+  renderTab();
+  renderPlan();
+})();
+</script>
+</body>
+</html>

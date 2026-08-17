@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة تحكم الأدمن — سفر المزامير</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- Login screen -->
+<div class="admin-login-wrap" id="login-screen">
+  <div class="card admin-login-card">
+    <h1>☩ لوحة تحكم الأدمن</h1>
+    <p>سفر المزامير</p>
+    <form id="login-form">
+      <div class="admin-field">
+        <label for="username">اسم المستخدم</label>
+        <input type="text" id="username" name="username" autocomplete="username" required>
+      </div>
+      <div class="admin-field">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">دخول</button>
+      <p class="admin-error" id="login-error" role="alert"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Dashboard shell (hidden until authenticated) -->
+<div class="admin-shell" id="admin-shell" style="display:none;">
+  <aside class="admin-sidebar">
+    <span class="brand">☩ لوحة التحكم</span>
+    <nav class="admin-nav" id="admin-nav">
+      <button data-view="overview" class="active">نظرة عامة</button>
+      <button data-view="psalms">المزامير والنصوص</button>
+      <button data-view="audio">الصوت</button>
+      <button data-view="settings">إعدادات الموقع</button>
+      <button data-view="log">سجل التعديلات</button>
+    </nav>
+    <button class="btn btn-secondary btn-sm" id="logout-btn">تسجيل الخروج</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h2 id="view-title">نظرة عامة</h2>
+      <span id="admin-username" style="color:var(--text-soft); font-size:0.9rem;"></span>
+    </div>
+    <div id="admin-content"></div>
+  </main>
+</div>
+
+<div id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

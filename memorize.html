@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حفظ مزمور — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+  <div id="memorize-root">
+    <header class="reader-header container">
+      <div class="psalm-number-label">الحفظ</div>
+      <h1 id="memorize-title">…</h1>
+      <p class="introduction" id="memorize-subtitle"></p>
+    </header>
+
+    <div class="container reading-width">
+      <div class="mode-tabs">
+        <button data-mode="full">القراءة الكاملة</button>
+        <button data-mode="missing-easy" class="active">كلمات مفقودة (سهل)</button>
+        <button data-mode="missing-medium">كلمات مفقودة (متوسط)</button>
+        <button data-mode="missing-hard">كلمات مفقودة (صعب)</button>
+        <button data-mode="completion">إكمال الآية</button>
+        <button data-mode="recall">التذكر</button>
+        <button data-mode="flashcards">البطاقات التعليمية</button>
+        <button data-mode="voice">التسميع الصوتى 🎙</button>
+      </div>
+
+      <div style="margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+        <span style="color:var(--text-soft); font-size:0.9rem;">مستوى الإتقان لكل آية:</span>
+        <div id="mastery-overview"></div>
+      </div>
+
+      <div id="memorize-body"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>سفر المزامير</p></div>
+</footer>
+
+<div id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/psalms.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/memorization.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>

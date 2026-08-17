@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المكتبة — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reader.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html" aria-current="page">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <div style="display:flex; gap:0.5rem; align-items:center;">
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container" style="padding-top:2.5rem;">
+    <div class="section-title"><h2>مكتبة المزامير</h2></div>
+
+    <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin-bottom:1.25rem;">
+      <input id="search-input" type="search" placeholder="ابحث برقم المزمور، أو كلمة، أو 23:4 لآية بعينها…"
+        style="flex:1; min-width:220px; padding:0.85rem 1rem; border-radius:var(--radius-lg); border:1px solid var(--line); background:var(--bg-elevated); color:var(--text); font-family:var(--font-ui); font-size:1rem;">
+    </div>
+
+    <div class="mode-tabs" id="filter-tabs">
+      <button class="active" data-filter="all">الكل</button>
+      <button data-filter="favorites">المفضلة</button>
+      <button data-filter="memorizing">قيد الحفظ</button>
+      <button data-filter="read">تمت قراءتها</button>
+      <button data-filter="unread">لم تُقرأ بعد</button>
+      <button data-filter="audio">لها صوت</button>
+    </div>
+
+    <div id="results-meta" style="color:var(--text-soft); font-size:0.9rem; margin-bottom:1rem;"></div>
+    <div id="verse-matches" style="margin-bottom:2rem;"></div>
+    <div class="psalm-grid" id="library-grid"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><p>سفر المزامير</p></div>
+</footer>
+
+<div id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/psalms.js"></script>
+<script src="js/search.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+let allPsalms = [];
+let currentFilter = 'all';
+let currentQuery = '';
+
+async function renderGrid() {
+  const grid = document.getElementById('library-grid');
+  const meta = document.getElementById('results-meta');
+
+  let list = allPsalms;
+  let searchNote = '';
+  const matchesEl = document.getElementById('verse-matches');
+  matchesEl.innerHTML = '';
+
+  if (currentQuery.trim()) {
+    const res = await Search.search(currentQuery);
+    if (res.type === 'psalm-number') {
+      list = res.results;
+    } else if (res.type === 'verse-ref') {
+      if (res.results.length) {
+        const hit = res.results[0];
+        location.href = `psalm.html?id=${hit.psalm}&verse=${hit.verse}`;
+        return;
+      }
+      list = [];
+    } else if (res.type === 'text') {
+      const psalmNums = [...new Set(res.results.map(r => r.psalm))];
+      list = allPsalms.filter(p => psalmNums.includes(p.number));
+      searchNote = `${res.results.length} آية مطابقة، فى ${psalmNums.length} مزمورًا`;
+
+      if (res.results.length) {
+        matchesEl.innerHTML = `
+          <div style="color:var(--text-soft); font-size:0.85rem; margin-bottom:0.5rem;">أدق النتائج:</div>
+          ${res.results.slice(0, 12).map(r => `
+            <a href="psalm.html?id=${r.psalm}&verse=${r.verse}" class="card" style="display:block; margin-bottom:0.6rem; padding:0.9rem 1.1rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;">
+                <strong style="font-family:var(--font-arabic);">مزمور ${r.psalm}:${r.verse}</strong>
+                <span style="color:var(--text-soft); font-size:0.8rem;">${r.matchedIn === 'title' ? 'فى العنوان' : 'فى النص'}</span>
+              </div>
+              <div style="font-family:var(--font-arabic); color:var(--text-soft);">${Search.highlight(r.text, currentQuery)}</div>
+            </a>`).join('')}
+        `;
+      }
+    } else {
+      list = [];
+    }
+  }
+
+  const readMap = Store.getReadPsalms();
+  const memorizing = new Set(Store.getMemorizingPsalms());
+  const favorites = new Set(Store.getFavoritePsalms());
+
+  if (currentFilter === 'favorites') list = list.filter(p => favorites.has(p.number));
+  if (currentFilter === 'memorizing') list = list.filter(p => memorizing.has(p.number));
+  if (currentFilter === 'read') list = list.filter(p => readMap[p.number]);
+  if (currentFilter === 'unread') list = list.filter(p => !readMap[p.number]);
+  if (currentFilter === 'audio') list = list.filter(p => !!p.audio);
+
+  meta.textContent = searchNote || `${list.length} مزمورًا`;
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><div class="icon">؟</div><p>لا توجد نتائج مطابقة.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(p => {
+    const isRead = !!readMap[p.number];
+    const isMem = memorizing.has(p.number);
+    const isFav = favorites.has(p.number);
+    const preview = p.verses[0]?.text || '';
+    return `
+      <div class="card psalm-card">
+        <div class="psalm-card-head">
+          <div class="psalm-card-head-left">
+            <span class="num-badge">${p.number}</span>
+            <span class="title">${p.title}</span>
+          </div>
+        </div>
+        <div class="preview">${preview}</div>
+        <div class="badges">
+          ${isRead ? '<span class="badge on">تمت قراءتها</span>' : ''}
+          ${isMem ? '<span class="badge on">قيد الحفظ</span>' : ''}
+          ${isFav ? '<span class="badge on">مفضلة</span>' : ''}
+        </div>
+        <div class="actions">
+          <a href="psalm.html?id=${p.number}">اقرأ</a>
+          <a href="memorize.html?id=${p.number}">احفظ</a>
+          <button ${p.audio ? '' : 'disabled'} data-play-audio="${p.number}">اسمع</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+document.getElementById('filter-tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-filter]');
+  if (!btn) return;
+  document.querySelectorAll('#filter-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.filter;
+  renderGrid();
+});
+
+let searchTimer;
+document.getElementById('search-input').addEventListener('input', (e) => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    currentQuery = e.target.value;
+    renderGrid();
+  }, 150);
+});
+
+document.getElementById('library-grid').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-play-audio]');
+  if (btn && !btn.disabled) location.href = `psalm.html?id=${btn.dataset.playAudio}`;
+});
+
+(async function init() {
+  allPsalms = await PsalmsData.all();
+  const params = new URLSearchParams(location.search);
+  if (params.get('focus') === 'search') {
+    setTimeout(() => document.getElementById('search-input').focus(), 100);
+  }
+  renderGrid();
+})();
+</script>
+</body>
+</html>

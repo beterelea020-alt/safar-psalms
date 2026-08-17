@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-08-16T11:31:31.504Z",
+  "total_psalms": 151,
+  "total_verses": 2467,
+  "error_count": 0,
+  "warning_count": 4,
+  "errors": [],
+  "warnings": [
+    "Identical verse text found in Psalm 56:12 and Psalm 56:6",
+    "Identical verse text found in Psalm 106:1 and Psalm 105:1",
+    "Identical verse text found in Psalm 106:15 and Psalm 106:8",
+    "Identical verse text found in Psalm 106:21 and Psalm 106:8"
+  ],
+  "note": "This validator checks STRUCTURE only (sequence, duplicates, missing/empty fields). It cannot verify translation accuracy or diacritic correctness — the source PDF's font produces known extraction artifacts (stray letters replacing certain diacritics, and occasional digit misreads e.g. '10' extracted as '11'). Manual proofreading against the printed source is required before treating this dataset as final."
+}

@@ -1,0 +1,309 @@
+/* ==========================================================================
+   Psalm Reader
+   ========================================================================== */
+
+.reader-header {
+  padding: 3rem 0 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2.5rem;
+}
+.reader-header .psalm-number-label {
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.reader-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+.reader-header .introduction {
+  color: var(--text-soft);
+  font-style: normal;
+  font-size: 1.05rem;
+  max-width: 34rem;
+  margin: 1rem auto 0;
+}
+
+.reader-toolbar {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+.reader-toolbar .divider { width: 1px; height: 1.5rem; background: var(--line); margin: 0 0.25rem; }
+
+.verses {
+  font-family: var(--font-arabic);
+  font-size: var(--verse-size);
+  line-height: var(--verse-line-height);
+}
+
+.verse {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius);
+  position: relative;
+  scroll-margin-top: 8rem;
+  transition: background var(--dur-fast) var(--ease);
+}
+.verse:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.verse.target-highlight { animation: verseGlow 2.2s var(--ease); }
+@keyframes verseGlow {
+  0% { background: color-mix(in srgb, var(--accent) 22%, transparent); }
+  100% { background: transparent; }
+}
+.verse.now-playing { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+
+.verse .vnum {
+  flex-shrink: 0;
+  width: 2.25rem;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  padding-top: 0.35rem;
+  text-align: center;
+  user-select: none;
+}
+.verse .vtext { flex: 1; }
+.verse .vtext .missing-word {
+  display: inline-block;
+  min-width: 3em;
+  border-bottom: 2px dotted var(--accent);
+  color: transparent;
+}
+.verse .vtext .missing-word.revealed { color: inherit; border-bottom-style: solid; }
+
+.verse-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+  flex-shrink: 0;
+}
+.verse:hover .verse-actions,
+.verse:focus-within .verse-actions,
+.verse.has-note .verse-actions,
+.verse.is-bookmarked .verse-actions,
+.verse.is-memorized .verse-actions { opacity: 1; }
+.verse-actions button {
+  width: 1.75rem; height: 1.75rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+.verse-actions button:hover { color: var(--accent); background: var(--bg-elevated); }
+.verse-actions button.active { color: var(--accent); }
+
+.verse-note {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border: 1px dashed var(--line);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+.verse-note textarea {
+  width: 100%;
+  min-height: 4rem;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  color: var(--text);
+  resize: vertical;
+}
+
+/* --- Reading mode --- */
+body.reading-mode .topnav,
+body.reading-mode .reader-toolbar .non-essential,
+body.reading-mode .site-footer { display: none; }
+body.reading-mode .verses { font-size: calc(var(--verse-size) * 1.05); }
+body.reading-mode .container { max-width: var(--content-width); }
+
+/* --- Prayer / quiet mode --- */
+body.prayer-mode {
+  background: var(--dark-bg);
+  color: var(--dark-ink);
+}
+body.prayer-mode .topnav,
+body.prayer-mode .reader-toolbar,
+body.prayer-mode .verse-actions,
+body.prayer-mode .site-footer,
+body.prayer-mode .reader-header .psalm-number-label { display: none; }
+body.prayer-mode .verses {
+  font-size: calc(var(--verse-size) * 1.25);
+  max-width: 38rem;
+  margin: 0 auto;
+}
+body.prayer-mode .reader-header { border: none; padding-top: 4rem; }
+.prayer-exit {
+  position: fixed;
+  top: 1.5rem; left: 1.5rem;
+  z-index: 100;
+  display: none;
+}
+body.prayer-mode .prayer-exit { display: flex; }
+
+/* --- Font controls popover --- */
+.popover {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  z-index: 50;
+  min-width: 220px;
+  display: none;
+}
+.popover.open { display: block; }
+.popover-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.9rem; }
+.popover-row:last-child { margin-bottom: 0; }
+.stepper { display: flex; align-items: center; gap: 0.5rem; }
+.stepper button {
+  width: 1.75rem; height: 1.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* --- Audio player --- */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.audio-player .time { font-size: 0.8rem; color: var(--text-soft); min-width: 3.2rem; text-align: center; }
+.audio-player .seek {
+  flex: 1;
+  min-width: 100px;
+  height: 4px;
+  appearance: none;
+  background: var(--line);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.audio-player .seek::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent);
+}
+.audio-unavailable {
+  display: flex; align-items: center; gap: 0.6rem;
+  color: var(--text-soft);
+  background: var(--bg-elevated);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* --- Prev/Next nav --- */
+.psalm-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.psalm-pager a {
+  flex: 1;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.psalm-pager a:hover { border-color: var(--accent); }
+.psalm-pager .pager-label { font-size: 0.8rem; color: var(--text-soft); }
+.psalm-pager .pager-title { font-family: var(--font-arabic); font-weight: 700; }
+.psalm-pager .next { text-align: left; align-items: flex-start; }
+.psalm-pager .prev { text-align: right; align-items: flex-end; }
+
+/* --- Flashcards --- */
+.flashcard-wrap { perspective: 1200px; max-width: 30rem; margin: 2rem auto; }
+.flashcard {
+  position: relative;
+  min-height: 220px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease);
+  cursor: pointer;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.flashcard-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+.flashcard-face.back { transform: rotateY(180deg); font-family: var(--font-arabic); font-size: 1.3rem; }
+.flashcard-face .ref { font-family: var(--font-arabic); font-size: 1.6rem; color: var(--accent); font-weight: 700; }
+
+/* --- Missing words difficulty selector --- */
+.mode-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.mode-tabs button {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+.mode-tabs button.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+/* --- Mastery indicator dots (review) --- */
+.mastery-dot { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; margin-inline-start: 0.35rem; }
+.mastery-good { background: #4C8B5E; }
+.mastery-mid { background: var(--accent); }
+.mastery-low { background: var(--danger); }
+
+/* --- Recitation engine: mic pulse --- */
+.mic-pulse {
+  width: 5rem; height: 5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+  background: var(--bg-elevated);
+  border: 2px solid var(--line);
+  position: relative;
+}
+.mic-pulse.active {
+  border-color: var(--accent);
+  animation: micPulse 1.6s ease-in-out infinite;
+}
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 35%, transparent); }
+  50% { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 0%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mic-pulse.active { animation: none; border-color: var(--accent); }
+}
