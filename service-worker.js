@@ -7,7 +7,7 @@
  *  - Everything else same-origin: network-first with cache fallback.
  */
 
-const CACHE_VERSION = 'psalms-v2';
+const CACHE_VERSION = 'psalms-v3';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const AUDIO_CACHE = `${CACHE_VERSION}-audio`;
