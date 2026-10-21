@@ -1,0 +1,135 @@
+diff --git a/js/reader.js b/js/reader.js
+index 0775204..4b953c0 100644
+--- a/js/reader.js
++++ b/js/reader.js
+@@ -26,6 +26,7 @@ const Reader = {
+     this.setupPager();
+     this.setupAudio();
+     this.restoreVerseStates();
++    window.addEventListener('popstate', () => location.reload());
+ 
+     if (verseParam) {
+       setTimeout(() => this.scrollToVerse(verseParam, true), 150);
+@@ -36,6 +37,36 @@ const Reader = {
+     Store.markPsalmRead(psalm.number, lastSeenVerse);
+   },
+ 
++  /* التشغيل التلقائي: الانتقال للمزمور التالى بدون إعادة تحميل الصفحة
++     (عشان المتصفح ما يمنعش الصوت) */
++  autoplayEnabled() {
++    try { return localStorage.getItem('safar_autoplay') !== '0'; } catch (e) { return true; }
++  },
++  setAutoplay(on) {
++    try { localStorage.setItem('safar_autoplay', on ? '1' : '0'); } catch (e) {}
++  },
++
++  async goToPsalm(num, autoplay) {
++    const psalm = await PsalmsData.get(num);
++    if (!psalm) return;
++    this.psalm = psalm;
++    document.title = `${psalm.title} — سفر المزامير`;
++    history.pushState({}, '', `psalm.html?id=${num}`);
++    const memLink = document.getElementById('memorize-link');
++    if (memLink) memLink.href = `memorize.html?id=${num}`;
++    await this.renderHeader();
++    await this.renderVerses();
++    await this.setupPager();
++    this.restoreVerseStates();
++    Store.pushHistory({ type: 'read', psalm: psalm.number, title: psalm.title });
++    Store.markPsalmRead(psalm.number, psalm.verses[0].number);
++    window.scrollTo({ top: 0, behavior: 'smooth' });
++    this.setupAudio();
++    if (autoplay && window.AudioController instanceof AudioPlayer) {
++      window.AudioController.play();
++    }
++  },
++
+   renderNotFound(id) {
+     document.getElementById('reader-root').innerHTML = `
+       <div class="empty-state">
+@@ -238,6 +269,7 @@ const Reader = {
+     window.__psalmNav = {
+       prev: prevNum ? `psalm.html?id=${prevNum}` : null,
+       next: nextNum ? `psalm.html?id=${nextNum}` : null,
++      nextNum,
+     };
+     const prevPsalm = prevNum ? await PsalmsData.get(prevNum) : null;
+     const nextPsalm = nextNum ? await PsalmsData.get(nextNum) : null;
+@@ -251,7 +283,11 @@ const Reader = {
+     const p = this.psalm;
+     const container = document.getElementById('audio-container');
+     if (p.audio) {
+-      window.AudioController = new AudioPlayer(container, p.audio, p.timings || null);
++      if (window.AudioController instanceof AudioPlayer) {
++        window.AudioController.load(p.audio, p.timings || null);
++      } else {
++        window.AudioController = new AudioPlayer(container, p.audio, p.timings || null);
++      }
+       return;
+     }
+     this.setupTTS(container, p);
+@@ -335,6 +371,7 @@ class AudioPlayer {
+       <button class="btn-icon" data-prev title="السابق">⏮</button>
+       <button class="btn-icon" data-play title="تشغيل / إيقاف">▶</button>
+       <button class="btn-icon" data-next title="التالى">⏭</button>
++      <button class="btn-icon ${Reader.autoplayEnabled() ? 'active' : ''}" data-auto title="تشغيل تلقائى للمزمور التالى" aria-pressed="${Reader.autoplayEnabled()}">🔁</button>
+       <span class="time" data-current>٠:٠٠</span>
+       <input type="range" class="seek" min="0" max="100" value="0" data-seek>
+       <span class="time" data-duration>٠:٠٠</span>
+@@ -356,6 +393,14 @@ class AudioPlayer {
+     });
+     this.container.querySelector('[data-prev]').addEventListener('click', () => location.href = window.__psalmNav?.prev || '#');
+     this.container.querySelector('[data-next]').addEventListener('click', () => location.href = window.__psalmNav?.next || '#');
++    this.container.querySelector('[data-auto]').addEventListener('click', (e) => {
++      const on = !Reader.autoplayEnabled();
++      Reader.setAutoplay(on);
++      e.currentTarget.classList.toggle('active', on);
++      e.currentTarget.setAttribute('aria-pressed', String(on));
++      toast(on ? 'التشغيل التلقائى مفعّل' : 'التشغيل التلقائى متوقف');
++    });
++    this.audio.addEventListener('ended', () => this.onEnded());
+     this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
+     this.audio.addEventListener('loadedmetadata', () => {
+       this.container.querySelector('[data-duration]').textContent = this.fmt(this.audio.duration);
+@@ -364,6 +409,28 @@ class AudioPlayer {
+       this.container.innerHTML = `<div class="audio-unavailable"><span>⚠</span><span>تعذّر تحميل الصوت</span></div>`;
+     });
+   }
++  load(src, timings) {
++    this.timings = timings;
++    const rate = Number(this.container.querySelector('[data-speed]').value) || 1;
++    this.audio.src = src;
++    this.audio.load();
++    this.audio.playbackRate = rate;
++    this.container.querySelector('[data-play]').textContent = '▶';
++    this.container.querySelector('[data-current]').textContent = this.fmt(0);
++    this.container.querySelector('[data-duration]').textContent = this.fmt(0);
++    this.container.querySelector('[data-seek]').value = 0;
++  }
++  play() {
++    const p = this.audio.play();
++    this.container.querySelector('[data-play]').textContent = '⏸';
++    if (p && p.catch) p.catch(() => { this.container.querySelector('[data-play]').textContent = '▶'; });
++  }
++  onEnded() {
++    this.container.querySelector('[data-play]').textContent = '▶';
++    document.querySelectorAll('.verse.now-playing').forEach(el => el.classList.remove('now-playing'));
++    const nextNum = window.__psalmNav?.nextNum;
++    if (Reader.autoplayEnabled() && nextNum) Reader.goToPsalm(nextNum, true);
++  }
+   toggle() {
+     if (this.audio.paused) { this.audio.play(); this.container.querySelector('[data-play]').textContent = '⏸'; }
+     else { this.audio.pause(); this.container.querySelector('[data-play]').textContent = '▶'; }
+diff --git a/service-worker.js b/service-worker.js
+index 209c6e3..873554a 100644
+--- a/service-worker.js
++++ b/service-worker.js
+@@ -7,7 +7,7 @@
+  *  - Everything else same-origin: network-first with cache fallback.
+  */
+ 
+-const CACHE_VERSION = 'psalms-v2';
++const CACHE_VERSION = 'psalms-v3';
+ const SHELL_CACHE = `${CACHE_VERSION}-shell`;
+ const DATA_CACHE = `${CACHE_VERSION}-data`;
+ const AUDIO_CACHE = `${CACHE_VERSION}-audio`;
