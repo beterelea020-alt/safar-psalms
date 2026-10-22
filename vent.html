@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>فضفضة — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .v-note { opacity:.8; font-size:.95rem; margin:.25rem 0 1.25rem; }
+  .v-box { width:100%; min-height:170px; padding:.9rem 1rem; font:inherit; line-height:1.9; color:inherit;
+    background:var(--surface, transparent); border:1px solid var(--border, #8884); border-radius:12px; resize:vertical; }
+  .v-actions { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem; }
+  .v-msg { white-space:pre-wrap; line-height:1.9; padding:1rem; border:1px dashed var(--border, #8886); border-radius:12px; margin:.8rem 0; }
+  .v-heard { text-align:center; padding:1.25rem 0 .5rem; }
+  .v-heard h2 { margin:.2rem 0; }
+  .v-chips { display:flex; flex-wrap:wrap; gap:.5rem; margin:.6rem 0 1rem; }
+  .v-chip { padding:.45rem .9rem; border-radius:999px; border:1px solid var(--border, #8886); background:transparent;
+    color:inherit; font:inherit; cursor:pointer; }
+  .v-chip[aria-pressed="true"] { background:var(--accent); color:#1a1a1a; border-color:var(--accent); }
+  .v-cards { display:grid; gap:.7rem; margin-top:.6rem; }
+  .v-card { display:block; padding:.9rem 1rem; border:1px solid var(--border, #8886); border-radius:12px; text-decoration:none; color:inherit; }
+  .v-card strong { display:block; margin-bottom:.25rem; color:var(--accent); }
+  .v-card span { opacity:.85; font-size:.95rem; line-height:1.7; }
+  .v-care { padding:1rem; border:1px solid var(--accent); border-radius:12px; margin:1rem 0; line-height:1.9; }
+  .v-time { font-size:.9rem; opacity:.75; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="vent.html" aria-current="page">فضفضة</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="suggest.html">اقتراحات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container reading-width" style="padding-top:2.5rem; padding-bottom:3rem;">
+    <h1>فضفضة</h1>
+    <p class="v-note">اكتب اللى جواك زى ما هو، من غير ما تفكر. الرسالة <strong>محفوظة فى موبايلك بس</strong>، ومش بتتبعت لأى حد، وبتتمسح لوحدها بعد ٢٤ ساعة.</p>
+
+    <!-- رد بعد ما الرسالة تتمسح -->
+    <section id="heard" class="v-heard" hidden>
+      <div style="font-size:2rem">🤍</div>
+      <h2>ربنا سمع صوتك</h2>
+      <p>والرسالة اللى فاتت راحت. لو حصل حاجة جديدة، اكتب من تانى.</p>
+    </section>
+
+    <!-- كتابة -->
+    <section id="write">
+      <textarea id="v-text" class="v-box" maxlength="3000" placeholder="النهارده حصل معايا… أنا حاسس إنى…"></textarea>
+      <div class="v-actions">
+        <button class="btn btn-primary" id="v-send">فضفضت، رشّحلى مزامير</button>
+      </div>
+    </section>
+
+    <!-- الرسالة الحالية + الترشيح -->
+    <section id="active" hidden>
+      <div class="v-time" id="v-time"></div>
+      <div class="v-msg" id="v-msg"></div>
+      <div class="v-actions">
+        <button class="btn" id="v-clear">امسح الرسالة دلوقتي</button>
+      </div>
+    </section>
+
+    <section id="care" class="v-care" hidden>
+      <strong>إنت مهم جدًا.</strong><br>
+      لو بتفكر تأذى نفسك أو مش عايز تكمل، كلّم حد قريب منك دلوقتى: أب الاعتراف، حد من أهلك أو صحابك. ولو حاسس بخطر، اتصل بالخط الساخن للصحة النفسية فى مصر: <strong dir="ltr">08008880700</strong>.
+      إنت مش لوحدك.
+    </section>
+
+    <section id="recs" hidden>
+      <h2 id="recs-title">مزامير ممكن تسمعها دلوقتى</h2>
+      <div class="v-chips" id="v-chips" aria-label="اختار إحساسك"></div>
+      <p id="v-line" style="font-family:var(--font-quran, 'Amiri', serif); font-size:1.15rem;"></p>
+      <div class="v-cards" id="v-cards"></div>
+    </section>
+
+    <section id="pick" style="margin-top:2rem;">
+      <h3>أو اختار إحساسك بنفسك</h3>
+      <div class="v-chips" id="v-pick"></div>
+    </section>
+  </div>
+</main>
+
+<script src="js/storage.js"></script>
+<script src="js/psalms.js"></script>
+<script src="js/app.js"></script>
+<script src="js/vent.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  let current = null;       // المود المختار
+  let activeMoods = [];
+
+  function show(ids) {
+    ['heard','write','active','care','recs','pick'].forEach(k => $(k).hidden = !ids.includes(k));
+  }
+
+  async function renderCards(psalmNums) {
+    const box = $('v-cards'); box.innerHTML = '';
+    for (const n of psalmNums) {
+      const p = await PsalmsData.get(n);
+      if (!p) continue;
+      const a = document.createElement('a');
+      a.className = 'v-card'; a.href = `psalm.html?id=${n}`;
+      const t = document.createElement('strong'); t.textContent = p.title;
+      const s = document.createElement('span'); s.textContent = (p.verses[0]?.text || '').slice(0, 110) + '…';
+      a.append(t, s); box.appendChild(a);
+    }
+  }
+
+  function renderChips(el, moods, selectedId, onPick) {
+    el.innerHTML = '';
+    moods.forEach(m => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'v-chip'; b.textContent = m.label;
+      b.setAttribute('aria-pressed', String(m.id === selectedId));
+      b.addEventListener('click', () => onPick(m));
+      el.appendChild(b);
+    });
+  }
+
+  async function selectMood(m, chipsEl, moodsList) {
+    current = m;
+    $('v-line').textContent = m ? m.line : 'ربنا قريب منك، وده مكان هادى تسمع فيه.';
+    await renderCards(m ? m.psalms : Vent.GENERAL);
+    if (chipsEl) renderChips(chipsEl, moodsList, m && m.id, mm => selectMood(mm, chipsEl, moodsList));
+    $('recs').hidden = false;
+  }
+
+  async function showActive(v) {
+    $('v-msg').textContent = v.text;
+    $('v-time').textContent = `الرسالة هتتمسح بعد ${Vent.remaining(v.ts)}`;
+    const found = Vent.detect(v.text);
+    activeMoods = found;
+    show(['active', 'recs', 'pick']);
+    $('care').hidden = !Vent.isCrisis(v.text);
+    if (found.length) {
+      $('recs-title').textContent = 'حاسس إنك: ' + found.map(m => m.label).join(' و ');
+      await selectMood(found[0], $('v-chips'), found);
+    } else {
+      $('recs-title').textContent = 'مزامير هادية ممكن تسمعها دلوقتى';
+      $('v-chips').innerHTML = '';
+      await selectMood(null, null, []);
+    }
+  }
+
+  function boot() {
+    renderChips($('v-pick'), Vent.MOODS, null, async m => {
+      $('recs-title').textContent = m.label;
+      await selectMood(m, $('v-chips'), Vent.MOODS);
+      $('recs').scrollIntoView({ behavior: 'smooth' });
+    });
+    const v = Vent.load();
+    if (v.state === 'active') showActive(v);
+    else if (v.state === 'expired') show(['heard', 'write', 'pick']);
+    else show(['write', 'pick']);
+  }
+
+  $('v-send').addEventListener('click', () => {
+    const text = $('v-text').value.trim();
+    if (text.length < 3) { toast('اكتب اللى جواك الأول'); return; }
+    if (!Vent.save(text)) { toast('مقدرتش أحفظ الرسالة على الجهاز'); return; }
+    $('v-text').value = '';
+    showActive(Vent.load());
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $('v-clear').addEventListener('click', () => {
+    Vent.clear();
+    show(['heard', 'write', 'pick']);
+  });
+
+  boot();
+})();
+</script>
+</body>
+</html>
