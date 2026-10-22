@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>اقتراحاتك — سفر المزامير</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F3A3A">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .sg-field { display:block; margin-bottom:1rem; }
+  .sg-field span { display:block; margin-bottom:.35rem; font-weight:700; }
+  .sg-field input, .sg-field select, .sg-field textarea {
+    width:100%; padding:.7rem .8rem; font:inherit; color:inherit;
+    background:var(--surface, transparent); border:1px solid var(--border, #8884); border-radius:10px;
+  }
+  .sg-field textarea { min-height:150px; resize:vertical; }
+  .sg-hp { position:absolute; left:-9999px; opacity:0; height:0; }
+  #sg-status { margin-top:1rem; min-height:1.5rem; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى</a>
+
+<nav class="topnav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="mark">☩</span> سفر المزامير</a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="library.html">المكتبة</a>
+      <a href="review.html">المراجعة</a>
+      <a href="my-psalms.html">مزاميرى</a>
+      <a href="vent.html">فضفضة</a>
+      <a href="settings.html">الإعدادات</a>
+      <a href="suggest.html" aria-current="page">اقتراحات</a>
+      <a href="about.html">عن الموقع</a>
+    </div>
+    <button class="mobile-nav-toggle" aria-expanded="false" aria-label="القائمة">☰</button>
+  </div>
+</nav>
+
+<main id="main">
+  <div class="container reading-width" style="padding-top:2.5rem; padding-bottom:3rem;">
+    <h1>اقتراحاتك</h1>
+    <p>عندك فكرة تخلي الموقع أحسن؟ أو لقيت غلطة في نص مزمور؟ اكتبها هنا وهتوصلني.</p>
+
+    <form id="sg-form" novalidate>
+      <label class="sg-field"><span>اسمك (اختياري)</span>
+        <input type="text" name="name" maxlength="60" autocomplete="name"></label>
+
+      <label class="sg-field"><span>نوع الرسالة</span>
+        <select name="type">
+          <option>فكرة جديدة</option>
+          <option>غلطة في نص مزمور</option>
+          <option>مشكلة في الموقع</option>
+          <option>شكر أو رأي</option>
+        </select></label>
+
+      <label class="sg-field"><span>رسالتك</span>
+        <textarea name="message" maxlength="2000" required></textarea></label>
+
+      <input class="sg-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="btn btn-primary" id="sg-send">إرسال</button>
+      <div id="sg-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</main>
+
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pwa.js"></script>
+<script>
+/* ===== الإعدادات — عدّلهم مرة واحدة بس ===== */
+const SUGGEST_CONFIG = {
+  // 1) الأفضل: مفتاح Web3Forms (مجانى) — الرسايل بتوصل على إيميلك. اعمله من web3forms.com
+  web3formsKey: '',
+  // 2) بديل: رقم واتساب بالصيغة الدولية من غير + (مثال: 2010xxxxxxxx)
+  whatsappNumber: '201550870190'
+};
+
+const form = document.getElementById('sg-form');
+const statusEl = document.getElementById('sg-status');
+const sendBtn = document.getElementById('sg-send');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(form));
+  if (data.website) return;                       // فخ للبوتات
+  const message = (data.message || '').trim();
+  if (message.length < 3) { statusEl.textContent = 'اكتب رسالتك الأول.'; return; }
+
+  sendBtn.disabled = true;
+  statusEl.textContent = 'جارى الإرسال…';
+
+  try {
+    if (SUGGEST_CONFIG.web3formsKey) {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: SUGGEST_CONFIG.web3formsKey,
+          subject: `سفر المزامير — ${data.type}`,
+          from_name: data.name || 'زائر',
+          type: data.type,
+          message
+        })
+      });
+      const out = await res.json();
+      if (!res.ok || !out.success) throw new Error('send failed');
+      form.reset();
+      statusEl.textContent = 'وصلت رسالتك، شكرًا ليك 🙏';
+    } else if (SUGGEST_CONFIG.whatsappNumber) {
+      const text = `*${data.type}*\n${data.name ? 'الاسم: ' + data.name + '\n' : ''}${message}`;
+      window.open(`https://wa.me/${SUGGEST_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+      statusEl.textContent = 'اضغط إرسال فى واتساب عشان توصلنى الرسالة.';
+    } else {
+      statusEl.textContent = 'الإرسال لسه مش متظبط.';
+    }
+  } catch (err) {
+    statusEl.textContent = 'حصلت مشكلة فى الإرسال، جرّب تانى بعد شوية.';
+  } finally {
+    sendBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
